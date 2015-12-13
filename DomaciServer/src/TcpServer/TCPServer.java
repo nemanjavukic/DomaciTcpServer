@@ -7,13 +7,15 @@ import java.util.LinkedList;
 
 public class TCPServer implements Runnable{
 	static LinkedList<ServerNit> klijenti=new LinkedList<ServerNit>();
+	static LinkedList<ServerNit2> klijenti2=new LinkedList<ServerNit2>();
 	static ServerNit klijent;
 	
 	public static void main(String[] args) {
 		Socket klijentSoket=null;
 		
 		try {
-			ServerSocket serverSoket=new ServerSocket(2222);
+			ServerSocket serverSoket=new ServerSocket(1908);
+			new Thread(new TCPServer()).start();
 			
 			while(true){
 			klijentSoket=serverSoket.accept();
@@ -28,7 +30,22 @@ public class TCPServer implements Runnable{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		Socket klijentSoket2=null;
+		
+		try {
+			ServerSocket serverSoket2=new ServerSocket(16913);
+			while(true){
+				klijentSoket2=serverSoket2.accept();
+				klijenti2.add(new ServerNit2(klijentSoket2, klijenti,klijenti2));
+				klijenti2.getLast().start();
+				
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 
