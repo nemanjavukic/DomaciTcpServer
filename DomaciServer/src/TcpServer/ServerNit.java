@@ -37,6 +37,7 @@ public ServerNit(Socket soketKom, LinkedList<ServerNit> klijenti){
 			soketZaKom.close();
 			break;
 				}
+				
 				operacija=ulaz;
 			System.out.println(operacija);
 			izlazniTokKaKlijentu.println("ok");

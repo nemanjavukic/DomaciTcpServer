@@ -35,9 +35,11 @@ public class TCPServer implements Runnable{
 		try {
 			ServerSocket serverSoket2=new ServerSocket(16913);
 			while(true){
+
 				klijentSoket2=serverSoket2.accept();
 				klijenti2.add(new ServerNit2(klijentSoket2, klijenti,klijenti2));
 				klijenti2.getLast().start();
+				System.out.println("b");
 				
 			}
 		} catch (IOException e) {
